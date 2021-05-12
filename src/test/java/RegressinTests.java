@@ -39,5 +39,17 @@ public class RegressinTests {
                 .body("token", is("QpwL5tke4Pnpja7X4"));
     }
 
+    @Test
+    void unSuccessLoginTest() {
+        given()
+                .contentType(JSON)
+                .body("{ \"email\": \"eve.holt@reqres.in\"}")
+                .when()
+                .post("/api/login")
+                .then()
+                .statusCode(400)
+                .body("error", is("Missing password"));
+    }
+
 
 }
