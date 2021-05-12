@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.get;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,7 +12,7 @@ public class SelenoidTests {
 
 // make request to https://selenoid.autotests.cloud/status
 // check status code 200
-// check errors: [ ]
+// check "total:5"
 
     /*
     {
@@ -84,4 +85,14 @@ public class SelenoidTests {
     }
 
 
+    @Test
+    void successStatusTotalWithAssertJTest() {
+        Integer response = get("https://selenoid.autotests.cloud/status")
+                .then()
+                .statusCode(200)
+                .extract()
+                .path("state.total");
+
+        assertThat(response).isEqualTo(5);
+    }
 }
