@@ -11,8 +11,9 @@ def junitVersion = "5.7.1"
 dependencies {
     testImplementation(
             "io.rest-assured:rest-assured:4.3.1",
+            "com.google.code.gson:gson:2.7",
             "org.assertj:assertj-core:3.19.0",
-            "org.junit.jupiter:junit-jupiter-api:$junitVersion")
+            "org.junit.jupiter:junit-jupiter:$junitVersion")
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
 }
 
@@ -25,6 +26,7 @@ tasks.withType(JavaCompile) {
 tasks.withType(Test) {
     systemProperties(System.getProperties())
     useJUnitPlatform()
+    maxParallelForks = 1
 
     testLogging {
         lifecycle {

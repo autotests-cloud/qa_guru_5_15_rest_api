@@ -1,8 +1,8 @@
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.get;
+import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,7 +39,6 @@ public class SelenoidTests {
                 .then()
                 .statusCode(200);
     }
-
 
     @Test
     void successStatusWithResponseTest() {
